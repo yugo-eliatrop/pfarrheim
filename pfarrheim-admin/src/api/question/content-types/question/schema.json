@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "visitorName": {
+      "type": "string"
+    },
+    "textQuestion": {
+      "type": "text"
+    },
+    "textAnswer": {
+      "type": "text"
+    },
+    "visitorEmail": {
+      "type": "email"
+    },
+    "isAnswered": {
+      "type": "boolean"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "questions"
+    }
+  }
+}
