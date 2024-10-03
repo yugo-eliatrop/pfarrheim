@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "o_rozhdestve_bogorodiczies",
+  "info": {
+    "singularName": "o-rozhdestve-bogorodiczy",
+    "pluralName": "o-rozhdestve-bogorodiczies",
+    "displayName": "О Рождестве Богородицы"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Content": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.ckeditor",
+        "shared.media",
+        "shared.slider"
+      ]
+    }
+  }
+}

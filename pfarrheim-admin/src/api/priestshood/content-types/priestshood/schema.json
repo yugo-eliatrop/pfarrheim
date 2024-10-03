@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "priestshoods",
+  "info": {
+    "singularName": "priestshood",
+    "pluralName": "priestshoods",
+    "displayName": "Духовенство",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Content": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.ckeditor",
+        "shared.media",
+        "shared.slider"
+      ]
+    }
+  }
+}

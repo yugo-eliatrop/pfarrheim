@@ -485,40 +485,12 @@ export interface PluginUsersPermissionsUser
   };
 }
 
-export interface ApiAboutAbout extends Struct.SingleTypeSchema {
-  collectionName: 'abouts';
-  info: {
-    singularName: 'about';
-    pluralName: 'abouts';
-    displayName: 'About';
-    description: 'Write about yourself and the content you create';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Schema.Attribute.String;
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'>;
-  };
-}
-
 export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
     singularName: 'article';
     pluralName: 'articles';
-    displayName: 'Article';
+    displayName: '\u0421\u0442\u0430\u0442\u044C\u0438';
     description: 'Create your blog content';
   };
   options: {
@@ -528,14 +500,13 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     title: Schema.Attribute.String;
     description: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
-        maxLength: 80;
+        maxLength: 220;
       }>;
     slug: Schema.Attribute.UID<'title'>;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
+      ['shared.media', 'shared.quote', 'shared.slider', 'shared.ckeditor']
     >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -557,7 +528,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   info: {
     singularName: 'author';
     pluralName: 'authors';
-    displayName: 'Author';
+    displayName: '\u0410\u0432\u0442\u043E\u0440\u044B';
     description: 'Create authors for your content';
   };
   options: {
@@ -581,22 +552,24 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
+export interface ApiContactsInfoContactsInfo extends Struct.SingleTypeSchema {
+  collectionName: 'contacts_infos';
   info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'Category';
-    description: 'Organize your content into categories';
+    singularName: 'contacts-info';
+    pluralName: 'contacts-infos';
+    displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
-    name: Schema.Attribute.String;
-    slug: Schema.Attribute.UID;
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    description: Schema.Attribute.Text;
+    address: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    email: Schema.Attribute.String;
+    vk: Schema.Attribute.String;
+    webAddressPatriarchy: Schema.Attribute.String;
+    webAddressEparchy: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -607,7 +580,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::category.category'
+      'api::contacts-info.contacts-info'
     >;
   };
 }
@@ -628,9 +601,6 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
     defaultSeo: Schema.Attribute.Component<'shared.seo', false>;
-    address: Schema.Attribute.String;
-    phoneNumber: Schema.Attribute.String;
-    email: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -643,12 +613,102 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHistoryHistory extends Struct.SingleTypeSchema {
+  collectionName: 'histories';
+  info: {
+    singularName: 'history';
+    pluralName: 'histories';
+    displayName: '\u0418\u0441\u0442\u043E\u0440\u0438\u044F \u0445\u0440\u0430\u043C\u0430';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Content: Schema.Attribute.DynamicZone<
+      ['shared.ckeditor', 'shared.media', 'shared.slider']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::history.history'
+    >;
+  };
+}
+
+export interface ApiORozhdestveBogorodiczyORozhdestveBogorodiczy
+  extends Struct.SingleTypeSchema {
+  collectionName: 'o_rozhdestve_bogorodiczies';
+  info: {
+    singularName: 'o-rozhdestve-bogorodiczy';
+    pluralName: 'o-rozhdestve-bogorodiczies';
+    displayName: '\u041E \u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435 \u0411\u043E\u0433\u043E\u0440\u043E\u0434\u0438\u0446\u044B';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Content: Schema.Attribute.DynamicZone<
+      ['shared.ckeditor', 'shared.media', 'shared.slider']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::o-rozhdestve-bogorodiczy.o-rozhdestve-bogorodiczy'
+    >;
+  };
+}
+
+export interface ApiPriestshoodPriestshood extends Struct.SingleTypeSchema {
+  collectionName: 'priestshoods';
+  info: {
+    singularName: 'priestshood';
+    pluralName: 'priestshoods';
+    displayName: '\u0414\u0443\u0445\u043E\u0432\u0435\u043D\u0441\u0442\u0432\u043E';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Content: Schema.Attribute.DynamicZone<
+      ['shared.ckeditor', 'shared.media', 'shared.slider']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::priestshood.priestshood'
+    >;
+  };
+}
+
 export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   collectionName: 'questions';
   info: {
     singularName: 'question';
     pluralName: 'questions';
-    displayName: 'Question';
+    displayName: '\u0412\u043E\u043F\u0440\u043E\u0441\u044B';
     description: '';
   };
   options: {
@@ -661,6 +721,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     visitorEmail: Schema.Attribute.Email;
     isAnswered: Schema.Attribute.Boolean;
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    visitorIsNotified: Schema.Attribute.Boolean;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -1051,11 +1112,13 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
-      'api::category.category': ApiCategoryCategory;
+      'api::contacts-info.contacts-info': ApiContactsInfoContactsInfo;
       'api::global.global': ApiGlobalGlobal;
+      'api::history.history': ApiHistoryHistory;
+      'api::o-rozhdestve-bogorodiczy.o-rozhdestve-bogorodiczy': ApiORozhdestveBogorodiczyORozhdestveBogorodiczy;
+      'api::priestshood.priestshood': ApiPriestshoodPriestshood;
       'api::question.question': ApiQuestionQuestion;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;

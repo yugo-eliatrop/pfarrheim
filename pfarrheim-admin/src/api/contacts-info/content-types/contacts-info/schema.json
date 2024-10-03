@@ -1,0 +1,34 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts_infos",
+  "info": {
+    "singularName": "contacts-info",
+    "pluralName": "contacts-infos",
+    "displayName": "Контакты",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "vk": {
+      "type": "string"
+    },
+    "webAddressPatriarchy": {
+      "type": "string"
+    },
+    "webAddressEparchy": {
+      "type": "string"
+    }
+  }
+}

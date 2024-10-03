@@ -62,6 +62,23 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedCkeditor extends Struct.ComponentSchema {
+  collectionName: 'components_shared_ckeditors';
+  info: {
+    displayName: 'Text';
+    description: '';
+  };
+  attributes: {
+    text: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'default';
+        }
+      >;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -70,6 +87,7 @@ declare module '@strapi/strapi' {
       'shared.rich-text': SharedRichText;
       'shared.quote': SharedQuote;
       'shared.media': SharedMedia;
+      'shared.ckeditor': SharedCkeditor;
     }
   }
 }

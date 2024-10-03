@@ -4,7 +4,7 @@
   "info": {
     "singularName": "question",
     "pluralName": "questions",
-    "displayName": "Question",
+    "displayName": "Вопросы",
     "description": ""
   },
   "options": {
@@ -32,6 +32,9 @@
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "questions"
+    },
+    "visitorIsNotified": {
+      "type": "boolean"
     }
   }
 }
